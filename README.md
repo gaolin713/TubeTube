@@ -84,7 +84,7 @@ Customize the behavior of **TubeTube** by setting the following environment vari
 
 ```yaml
 environment:
-  - PUID=1000                       # 用户ID（默认: 1000）
+    - PUID=1000                       # 用户ID（默认: 1000）
   - PGID=1000                       # 用户组ID（默认: 1000）
   - VERBOSE_LOGS=false              # 启用 yt-dlp 详细日志（默认: false）
   - TRIM_METADATA=false             # 修剪文件元数据（默认: false）
@@ -100,10 +100,15 @@ environment:
   - SUBTITLE_FORMAT=vtt             # 字幕格式（默认: vtt）
   - SUBTITLE_LANGUAGES=en           # 字幕语言（默认: en）
   - THREAD_COUNT=4                  # 处理线程数量（默认: 4）
+  - YTDLP_UPDATE=                   # Auto-update yt-dlp: "latest" or "nightly" (default: disabled)
+  - YTDLP_UPDATE_HOUR=3             # Hour to run the yt-dlp update, 0-23 (default: 3)
 ```
-> 注： yt‑dlp 对 Node 的最低支持是 v20
 
-本地开发可使用 `config/app_config.yaml` 配置；如存在环境变量则优先生效。
+
+### yt-dlp Auto-Update
+
+- `YTDLP_UPDATE` — When set to `latest` or `nightly`, yt-dlp will be upgraded automatically once per day at the specified hour. Unset by default — the version pinned in the image is used.
+- `YTDLP_UPDATE_HOUR` — Only applies when `YTDLP_UPDATE` is set. Accepts 0-23. Update logs are written to `ytdlp-update.log` in your config directory.
 
 ## Screenshots
 
